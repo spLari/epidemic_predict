@@ -14,4 +14,7 @@ filename = sys.argv[1]
 # Read the csv file data.
 csvFileData = ManageCsvFile.getCsvFileData(filename)
 # Put the csv data in a dictionary.
-dicData = HandleWithCsvData.createDataDictionary(csvFileData)
+dictData = HandleWithCsvData.createDataDictionary(csvFileData)
+# Creating the dictionary to cluster the cities.
+dictCities = HandleWithCsvData.createCitiesDictionary(dictData)
+print(dictCities)
