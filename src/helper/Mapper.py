@@ -1,3 +1,11 @@
+'''
+Function to return the month name.
+
+Parameters:
+  month: the number of the month
+Returns:
+  The name of the month.
+'''
 def getMonthName(month):
   if month == "01":
     return "January"
