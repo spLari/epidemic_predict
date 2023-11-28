@@ -8,8 +8,8 @@
 
 To run this simple project, follow the steps:
 
-  $ git clone https://github.com/spLari/epidemic_predict.git
-  $ cd epidemic_predict/
+  - git clone https://github.com/spLari/epidemic_predict.git
+  - cd epidemic_predict/
 
 ## Usage
 

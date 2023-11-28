@@ -11,7 +11,7 @@ validateNumberOfParameters()
 
 # Get the name of the database file.
 filename = sys.argv[1]
-# Read the file data.
+# Read the csv file data.
 csvFileData = ManageCsvFile.getCsvFileData(filename)
-# Put the data in a dictionary.
+# Put the csv data in a dictionary.
 dicData = HandleWithCsvData.createDataDictionary(csvFileData)
