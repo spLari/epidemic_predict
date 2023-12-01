@@ -1,6 +1,7 @@
 import sys
 from src.service import HandleWithCsvData
 from src.service import ManageCsvFile
+from service import DataClassification
 
 def validateNumberOfParameters():
     num_parameters = len(sys.argv)
@@ -17,4 +18,5 @@ csvFileData = ManageCsvFile.getCsvFileData(filename)
 dictData = HandleWithCsvData.createDataDictionary(csvFileData)
 # Creating the dictionary to cluster the cities.
 dictCities = HandleWithCsvData.createCitiesDictionary(dictData)
+dictCities = DataClassification.setEpidemicSituation(dictCities)
 print(dictCities)

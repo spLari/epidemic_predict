@@ -64,7 +64,6 @@ def updateDictionary(dictCities, city, monthName):
 def setTotalCases(dictCities):
   city_keys = dictCities.keys()
   for city in city_keys:
-    #print(dictCities[city].values())
     amount_monthly_cases = dictCities[city].values()
     totalCases = sum(amount_monthly_cases)
     dictCities[city].update({"Total Cases": totalCases})
