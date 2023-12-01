@@ -188,4 +188,8 @@ def getCitiesPopulation():
     'ALEM PARAIBA': 30.717,
     'JUATUBA': 30.716,
     'SANTA BARBARA': 30.466,
+    'ESPINOSA': 30.443,
+    'CLAUDIO': 30.159,
+    'CAMBUI': 29.536,
+    'CARMO DO PARAINAIBA': 29.011
   }
