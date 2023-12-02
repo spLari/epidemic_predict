@@ -1,8 +1,11 @@
 import sys
+import re
+
 from src.service import HandleWithCsvData
 from src.service import ManageCsvFile
 from src.service import DataClassification
 from src.service import Graphs
+from src.service import GenerateReport
 
 def validateNumberOfParameters():
     num_parameters = len(sys.argv)
@@ -19,11 +22,11 @@ csvFileData = ManageCsvFile.getCsvFileData(filename)
 dictData = HandleWithCsvData.createDataDictionary(csvFileData)
 # Creating the dictionary to cluster the cities.
 dictCities = HandleWithCsvData.createCitiesDictionary(dictData)
+# Classify the situation of each city.
 dictCities = DataClassification.setEpidemicSituation(dictCities)
-# Graphs.plotMonthlyGrap("BELO HORIZONTE", dictCities)
-# Graphs.plotCitiesGrap(dictCities)
-
-for city in dictCities:
-    situation = dictCities[city].get('SITUATION')
-    if situation == "MODERATE" or situation == "HIGH" or situation == "VERY HIGH":
-        print('Was detected an increase of cases in ' + city + ' in the last 3 months')
+# Generate report file.
+folder = re.sub(".csv","",filename)
+GenerateReport.logResultData(dictCities, folder)
+# Create the graphs.
+Graphs.plotMonthlyGrap("BELO HORIZONTE", dictCities, folder)
+Graphs.plotCitiesGrap(dictCities, folder)
