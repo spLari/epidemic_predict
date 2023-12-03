@@ -36,15 +36,32 @@ def getSituation(cityName, cityData):
   current_month = datetime.now().month
   percent = 0
   if (current_month != '01' or current_month != '02' or current_month != '03'):
-    last_three_months = [Mapper.getMonthName(str(current_month-3)),
-                         Mapper.getMonthName(str(current_month-2)),
-                         Mapper.getMonthName(str(current_month-1))]
+    last_three_months = []
+    subtrator = 1
+    # Get the number of months mapped in city. -1 to remove the 'Total Cases' key.
+    month_mapped_in_city = len(cityData.keys())-1
+
+    # Define the number of months to search to calculate the percent.
+    number_of_months_to_consider = 3 
+    # Check the number of months in the dictionary.
+    if month_mapped_in_city > 0 and month_mapped_in_city < 3:
+      number_of_months_to_consider = month_mapped_in_city
+
+    # Append the months inside the list to calculate.
+    while len(last_three_months) < number_of_months_to_consider:
+      month = current_month - subtrator
+      month_name = Mapper.getMonthName(str(month))
+      if month_name in cityData.keys():
+        last_three_months.append(month_name)
+
+      subtrator += 1
 
     for month in last_three_months:
-      if month in cityData.keys():
-        num_cases = cityData[month]
-        percent += num_cases*100/city_population
-    
+      num_cases = cityData[month]
+      percent += num_cases
+
+    percent = percent*100/city_population
+
     ten_percent_of_population = city_population*10/100
     twenty_percent_of_population = city_population*20/100
     fourty_percent_of_population = city_population*40/100

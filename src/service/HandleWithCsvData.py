@@ -83,6 +83,9 @@ def createCitiesDictionary(dictData):
   dictValues = dictData.values()
   for item in dictValues:
     city = item['City']
+    mapped_population = Mapper.getCitiesPopulation()
+    if (not city in mapped_population):
+      continue
     date = removeSlash(item['Collection date'])
     month_name = Mapper.getMonthName(date[1])
     if city in dictCities:
