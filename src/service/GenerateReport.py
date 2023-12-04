@@ -22,7 +22,7 @@ def createDirectory(folder):
   directoryExists = checkDirectoryExists(folder)
   if not directoryExists:
     print('creating')
-    os.mkdir(const.REPORT_DIRECTORY + folder + '/')
+    os.makedirs(const.REPORT_DIRECTORY + '/' + folder + '/')
 
 '''
 Function to save the result in report directory.
@@ -70,7 +70,8 @@ def saveEpidemicCities(dictCities, folder):
     situation = dictCities[city].get('SITUATION')
     if situation == "MODERATE" or situation == "HIGH" or situation == "VERY HIGH":
         print('Was detected an increase of cases in ' + city + ' in the last 3 months')
-        epidemicCities.update({city})
+        print(dictCities[city])
+        epidemicCities.update({city: dictCities[city]})
 
   data = convertDictInDataframe(epidemicCities)
   saveFileOnDirectory(folder, data, "cities_with_epidemic.csv")
