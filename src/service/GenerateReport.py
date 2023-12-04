@@ -10,7 +10,7 @@ Returns:
   Return True if directory exists and False if not exists.
 '''
 def checkDirectoryExists(folder):
-  if os.path.exists(const.REPORT_DIRECTORY + folder + '/'):
+  if os.path.exists(const.REPORT_DIRECTORY + '/' + folder + '/'):
     return True
   
   return False
@@ -21,7 +21,6 @@ Function to create the report directory.
 def createDirectory(folder):
   directoryExists = checkDirectoryExists(folder)
   if not directoryExists:
-    print('creating')
     os.makedirs(const.REPORT_DIRECTORY + '/' + folder + '/')
 
 '''
@@ -70,7 +69,6 @@ def saveEpidemicCities(dictCities, folder):
     situation = dictCities[city].get('SITUATION')
     if situation == "MODERATE" or situation == "HIGH" or situation == "VERY HIGH":
         print('Was detected an increase of cases in ' + city + ' in the last 3 months')
-        print(dictCities[city])
         epidemicCities.update({city: dictCities[city]})
 
   data = convertDictInDataframe(epidemicCities)
